@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --navy: #0A1628;
+  --navy-mid: #0F2040;
+  --navy-light: #1A3560;
+  --gold: #C9A84C;
+  --gold-light: #E2C47A;
+  --gold-pale: #FDF8EE;
+  --warm-white: #F8F6F1;
+  --slate: #4A5568;
+  --slate-light: #718096;
+  --text-dark: #1A202C;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--warm-white);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+.font-display { font-family: 'Playfair Display', serif; }
+
+/* Gold divider */
+.gold-rule {
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--gold);
+  margin: 16px 0 24px;
+}
+
+.gold-rule.center { margin: 16px auto 24px; }
