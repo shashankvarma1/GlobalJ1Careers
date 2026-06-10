@@ -9,8 +9,8 @@ export async function POST(req: Request) {
     const resend = new Resend(apiKey);
     const { name, email, country, role, message } = await req.json();
     await resend.emails.send({
-      from: "Global J1 Careers <noreply@globalj1careers.com>",
-      to: process.env.CONTACT_EMAIL || "varma.shashank2@gmail.com",
+      from: "Global J1 Careers <info@globalj1careers.com>",
+      to: process.env.CONTACT_EMAIL || "globalj1careers@gmail.com",
       replyTo: email,
       subject: `New J1 Consultation — ${name}`,
       html: `<p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Country:</b> ${country}</p><p><b>Role:</b> ${role}</p><p><b>Message:</b> ${message}</p>`,
