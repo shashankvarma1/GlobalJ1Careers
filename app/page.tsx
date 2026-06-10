@@ -12,6 +12,7 @@ const IMAGES = {
   lobby: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
   concierge: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=800&q=80",
   dining: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
+  housekeeping: "https://images.unsplash.com/photo-1631049552240-59c37f38802b?w=800&q=80",
 };
 
 export default function Home() {
@@ -87,13 +88,13 @@ export default function Home() {
         <div style={{ maxWidth: 1200, margin: "0 auto", width: "100%", position: "relative" }}>
           <div style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.3)", borderRadius: 20, padding: "6px 16px", marginBottom: 28 }}>
             <Star size={14} style={{ color: "#C9A84C" }} />
-            <span style={{ color: "#C9A84C", fontSize: 13, fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase" }}>J1 Visa Hospitality Careers</span>
+            <span style={{ color: "#C9A84C", fontSize: 13, fontWeight: 500, letterSpacing: "0.06em", textTransform: "uppercase" }}>J-1 Visa Hospitality Careers</span>
           </div>
-          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.6rem, 6vw, 4.5rem)", fontWeight: 700, color: "#fff", lineHeight: 1.15, maxWidth: 700, marginBottom: 24 }}>
+          <h1 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.6rem, 6vw, 4.5rem)", fontWeight: 700, color: "#fff", lineHeight: 1.15, maxWidth: 750, marginBottom: 24 }}>
             Launch Your<br /><span style={{ color: "#C9A84C" }}>Hospitality Career</span><br />in the United States
           </h1>
-          <p style={{ color: "rgba(255,255,255,0.78)", fontSize: "clamp(1rem, 2vw, 1.18rem)", maxWidth: 560, lineHeight: 1.8, marginBottom: 44 }}>
-            We connect international students and graduates with J1 visa positions at top U.S. hotels, resorts, and restaurants — and guide you to the right sponsor every step of the way.
+          <p style={{ color: "rgba(255,255,255,0.78)", fontSize: "clamp(1rem, 2vw, 1.18rem)", maxWidth: 620, lineHeight: 1.8, marginBottom: 44 }}>
+            We help international students and hospitality graduates navigate the J-1 process and explore internship and trainee opportunities at top U.S. hotels, resorts, and restaurants.
           </p>
           <div style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
             <a href="#contact" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#C9A84C", color: "#0A1628", padding: "15px 32px", borderRadius: 4, fontWeight: 700, fontSize: 15, textDecoration: "none", boxShadow: "0 4px 20px rgba(201,168,76,0.35)", transition: "all 0.2s" }}
@@ -105,11 +106,21 @@ export default function Home() {
               onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.35)"; e.currentTarget.style.color = "#fff"; }}
             >Explore Roles</a>
           </div>
-          <div style={{ display: "flex", gap: 48, marginTop: 72, flexWrap: "wrap" }}>
-            {[["300+", "Students Placed"], ["80+", "Hotel Partners"], ["15+", "Countries Served"], ["98%", "Visa Success Rate"]].map(([num, label]) => (
-              <div key={label}>
-                <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "2rem", fontWeight: 700, color: "#C9A84C" }}>{num}</div>
-                <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 13, marginTop: 2 }}>{label}</div>
+
+          {/* Stats */}
+          <div style={{ display: "flex", gap: 40, marginTop: 64, flexWrap: "wrap" }}>
+            {[
+              ["800+", "Students Guided"],
+              ["50K+", "Social Media Community"],
+              ["10+", "Years Hospitality Experience"],
+              ["2019", "Former J-1 Participant"],
+            ].map(([num, label]) => (
+              <div key={label} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
+                <CheckCircle size={18} style={{ color: "#C9A84C", marginTop: 4, flexShrink: 0 }} />
+                <div>
+                  <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "1.6rem", fontWeight: 700, color: "#C9A84C", lineHeight: 1 }}>{num}</div>
+                  <div style={{ color: "rgba(255,255,255,0.55)", fontSize: 13, marginTop: 4 }}>{label}</div>
+                </div>
               </div>
             ))}
           </div>
@@ -140,17 +151,17 @@ export default function Home() {
                 Founded by Someone<br />Who Walked Your Path
               </h2>
               <p style={{ color: "#4A5568", lineHeight: 1.85, marginBottom: 16, fontSize: 15.5 }}>
-                <strong style={{ color: "#0A1628" }}>Kranthi</strong> knows exactly what it feels like to dream of a career in American hospitality. He came to the United States on a J1 visa as a culinary student — navigating an unfamiliar system, a new culture, and the high-pressure world of professional kitchens entirely on his own.
+                <strong style={{ color: "#0A1628" }}>Kranthi</strong> knows exactly what it feels like to dream of a career in American hospitality. He came to the United States on a J-1 visa as a culinary student — navigating an unfamiliar system, a new culture, and the high-pressure world of professional kitchens entirely on his own.
               </p>
               <p style={{ color: "#4A5568", lineHeight: 1.85, marginBottom: 16, fontSize: 15.5 }}>
                 He worked his way up from extern to head chef at a respected U.S. restaurant, building a life and career he is proud of. But he never forgot how hard that first step was.
               </p>
               <p style={{ color: "#4A5568", lineHeight: 1.85, marginBottom: 32, fontSize: 15.5 }}>
-                That is why he founded <strong style={{ color: "#0A1628" }}>Global J1 Careers</strong> — to be the guide he wished he had. Today, his team helps aspiring hospitality professionals land J1 positions at top U.S. hotels and restaurants, connecting them with the right sponsors and employers from day one.
+                That is why he founded <strong style={{ color: "#0A1628" }}>Global J1 Careers</strong> — to be the guide he wished he had. Today, Global J1 Careers helps aspiring hospitality professionals explore J-1 opportunities in the United States by connecting them with reputable sponsors, employers, and industry resources throughout the process.
               </p>
               <div style={{ padding: "20px 24px", background: "#FDF8EE", borderLeft: "4px solid #C9A84C", borderRadius: "0 6px 6px 0" }}>
                 <p style={{ color: "#0A1628", fontStyle: "italic", fontSize: 15, lineHeight: 1.7, margin: 0 }}>
-                  "I built this so no one has to figure out the J1 process alone. If I could do it, so can you — and we will help every step of the way."
+                  "I built this so no one has to figure out the J-1 process alone. If I could do it, so can you — and we will help every step of the way."
                 </p>
                 <p style={{ color: "#C9A84C", fontWeight: 600, fontSize: 13, marginTop: 10, marginBottom: 0 }}>— Kranthi, Founder & Head Chef</p>
               </div>
@@ -162,7 +173,7 @@ export default function Home() {
               { icon: <Shield size={26} />, title: "Sponsor Connections", sub: "We match you with licensed U.S. DS-2019 sponsors", dark: true },
               { icon: <ChefHat size={26} />, title: "Hospitality Specialists", sub: "100% focused on hotel & restaurant roles", dark: false },
               { icon: <Award size={26} />, title: "Founder-Led Guidance", sub: "Advice from someone who did it himself", dark: false },
-              { icon: <Clock size={26} />, title: "Fast Processing", sub: "Average 3–4 week turnaround", dark: true },
+              { icon: <Clock size={26} />, title: "Processing Time", sub: "Average 2–4 months turnaround", dark: true },
             ].map((card, i) => (
               <div key={i} style={{ background: card.dark ? "#0A1628" : "#FDF8EE", padding: "28px 24px", borderRadius: 8, border: !card.dark ? "1px solid rgba(201,168,76,0.2)" : "none" }}>
                 <div style={{ color: "#C9A84C", marginBottom: 14 }}>{card.icon}</div>
@@ -183,10 +194,10 @@ export default function Home() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 16 }}>
             {[
-              { img: IMAGES.kitchen, title: "Culinary Arts", roles: "Chef, Pastry Chef, Line Cook, Sous Chef" },
-              { img: IMAGES.lobby, title: "Hotel Management", roles: "Front Desk, Guest Services, GM Trainee" },
-              { img: IMAGES.concierge, title: "Concierge & Events", roles: "Concierge, Event Coordinator, Butler" },
-              { img: IMAGES.dining, title: "Food & Beverage", roles: "Restaurant Manager, Sommelier, Banquet" },
+              { img: IMAGES.kitchen, title: "Culinary Arts / Kitchen", roles: "Commis Chef, Line Cook, Kitchen Steward, Pastry Assistant, Baker" },
+              { img: IMAGES.dining, title: "Food & Beverage", roles: "F&B Operations, Banquet Service, Bar & Lounge Operations" },
+              { img: IMAGES.housekeeping, title: "Housekeeping / Rooms", roles: "Housekeeping Attendant, Room Attendant, Laundry Attendant" },
+              { img: IMAGES.lobby, title: "Front Office / Guest Services", roles: "Front Desk Agent, Guest Services, Concierge, Reservations" },
             ].map((r, i) => (
               <div key={i} style={{ position: "relative", borderRadius: 8, overflow: "hidden", aspectRatio: "3/4" }}>
                 <img src={r.img} alt={r.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -196,7 +207,7 @@ export default function Home() {
                   <div style={{ color: "rgba(255,255,255,0.6)", fontSize: 12.5, lineHeight: 1.5 }}>{r.roles}</div>
                 </div>
                 <div style={{ position: "absolute", top: 16, left: 16, background: "rgba(201,168,76,0.2)", border: "1px solid rgba(201,168,76,0.4)", borderRadius: 20, padding: "4px 12px" }}>
-                  <span style={{ color: "#C9A84C", fontSize: 11, fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" }}>J1 Positions</span>
+                  <span style={{ color: "#C9A84C", fontSize: 11, fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase" }}>J-1 Positions</span>
                 </div>
               </div>
             ))}
@@ -210,15 +221,35 @@ export default function Home() {
           <div style={{ textAlign: "center", marginBottom: 64 }}>
             <span style={{ color: "#C9A84C", fontSize: 13, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>What We Offer</span>
             <span style={{ display: "block", width: 60, height: 3, background: "#C9A84C", margin: "12px auto 24px" }} />
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 3.5vw, 2.8rem)", fontWeight: 700, color: "#0A1628" }}>Full-Service J1 Placement</h2>
-            <p style={{ color: "#718096", maxWidth: 520, margin: "16px auto 0", lineHeight: 1.75, fontSize: 15.5 }}>From first consultation to your first day on the floor — we handle the entire J1 hospitality journey.</p>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 3.5vw, 2.8rem)", fontWeight: 700, color: "#0A1628" }}>Full-Service J-1 Placement</h2>
+            <p style={{ color: "#718096", maxWidth: 520, margin: "16px auto 0", lineHeight: 1.75, fontSize: 15.5 }}>From first consultation to your first day on the floor — we handle the entire J-1 hospitality journey.</p>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
             {[
-              { icon: <ChefHat size={32} />, title: "Hospitality Job Matching", desc: "We match your culinary training, hotel management degree, or F&B experience to the right J1 positions at leading U.S. properties and restaurant groups.", features: ["Resume & portfolio optimization", "Personalized role matching", "Interview coaching", "Salary negotiation support"] },
-              { icon: <Briefcase size={32} />, title: "Visa Sponsorship Guidance", desc: "We connect you with licensed U.S. sponsors who issue your DS-2019 on your behalf. We manage the relationship and paperwork guidance so the process is smooth end to end.", features: ["Matched to the right sponsor", "DS-2019 process walkthrough", "Embassy interview prep", "Ongoing compliance support"] },
-              { icon: <Hotel size={32} />, title: "Partner Hotel Network", desc: "We have direct relationships with Marriott, Hilton, Hyatt, and independent luxury properties actively seeking J1 hospitality talent.", features: ["80+ hotel & resort partners", "Fine dining restaurant partners", "Luxury resort placements", "City & resort locations"] },
-              { icon: <Users size={32} />, title: "Pre-Departure & Arrival", desc: "Moving to the U.S. is a big step. We prepare you for everything from housing and banking to understanding American tipping culture.", features: ["Housing search assistance", "SSN & banking setup", "Workplace culture briefing", "Airport & arrival guide"] },
+              {
+                icon: <ChefHat size={32} />,
+                title: "Hospitality Job Matching",
+                desc: "We align your culinary training, hotel management degree, or food & beverage experience with the right J-1 opportunities at leading hotels, resorts, and restaurant groups across the United States.",
+                features: ["Resume & portfolio optimization", "Personalized role matching", "Interview preparation & coaching", "Offer guidance & negotiation support"]
+              },
+              {
+                icon: <Briefcase size={32} />,
+                title: "Visa Sponsorship Guidance",
+                desc: "We connect you with licensed U.S. sponsors who issue your DS-2019 on your behalf. We manage the relationship and paperwork guidance so the process is smooth end to end.",
+                features: ["Sponsor matching and selection support", "DS-2019 process guidance and walkthrough", "Embassy interview preparation", "Ongoing program compliance support"]
+              },
+              {
+                icon: <Hotel size={32} />,
+                title: "Partner Hotel Network",
+                desc: "We work with a wide range of hospitality employers and help connect candidates to J-1 opportunities.",
+                features: ["Hotel, resort & restaurant placements through sponsor networks", "Opportunities across luxury, city, and resort locations", "Access to fine dining and hospitality training programs", "Expanding network of employers across the U.S."]
+              },
+              {
+                icon: <Users size={32} />,
+                title: "Pre-Departure & Arrival",
+                desc: "Moving to the U.S. is a big step. We prepare you for everything from housing and banking to understanding American tipping culture.",
+                features: ["Housing search assistance", "SSN & banking setup", "Workplace culture briefing", "Airport & arrival guide"]
+              },
             ].map((s, i) => (
               <div key={i} style={{ background: "#fff", borderRadius: 8, padding: "36px 32px", border: "1px solid rgba(10,22,40,0.08)", boxShadow: "0 2px 16px rgba(10,22,40,0.05)", transition: "transform 0.2s, box-shadow 0.2s" }}
                 onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 8px 32px rgba(10,22,40,0.12)"; }}
@@ -229,8 +260,8 @@ export default function Home() {
                 <p style={{ color: "#4A5568", fontSize: 14.5, lineHeight: 1.75, marginBottom: 24 }}>{s.desc}</p>
                 <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 8 }}>
                   {s.features.map(f => (
-                    <li key={f} style={{ display: "flex", alignItems: "center", gap: 8, color: "#0A1628", fontSize: 13.5 }}>
-                      <CheckCircle size={15} style={{ color: "#C9A84C", flexShrink: 0 }} /> {f}
+                    <li key={f} style={{ display: "flex", alignItems: "flex-start", gap: 8, color: "#0A1628", fontSize: 13.5 }}>
+                      <CheckCircle size={15} style={{ color: "#C9A84C", flexShrink: 0, marginTop: 2 }} /> {f}
                     </li>
                   ))}
                 </ul>
@@ -250,10 +281,10 @@ export default function Home() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 40 }}>
             {[
-              { step: "01", icon: <Globe size={22} />, title: "Free Consultation", desc: "Discuss your hospitality background, preferred roles, and J1 eligibility with Kranthi's team." },
-              { step: "02", icon: <ChefHat size={22} />, title: "Profile & Matching", desc: "We build your professional profile and match you to verified U.S. hotel and restaurant openings." },
-              { step: "03", icon: <Briefcase size={22} />, title: "Sponsor Matching", desc: "We connect you with a licensed U.S. sponsor who issues your DS-2019 and prepares you for the embassy interview." },
-              { step: "04", icon: <ConciergeBell size={22} />, title: "Start Your Role", desc: "Arrive ready to work with full pre-departure support, housing guidance, and on-ground orientation." },
+              { step: "01", icon: <Globe size={22} />, title: "Free Consultation", desc: "Discuss your hospitality background, preferred roles, and J-1 eligibility with our team." },
+              { step: "02", icon: <ChefHat size={22} />, title: "Profile & Matching", desc: "We build your professional profile and match you with suitable hospitality opportunities through our sponsor network." },
+              { step: "03", icon: <Briefcase size={22} />, title: "Sponsor Matching", desc: "We connect you with a licensed U.S. J-1 sponsor who issues your DS-2019 and manages your program documentation and compliance." },
+              { step: "04", icon: <ConciergeBell size={22} />, title: "Start Your Role", desc: "Receive pre-departure guidance, arrival orientation, and support as you begin your J-1 hospitality program in the U.S." },
             ].map((p, i) => (
               <div key={i}>
                 <div style={{ width: 52, height: 52, borderRadius: "50%", border: "2px solid #C9A84C", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20, background: "rgba(201,168,76,0.1)", color: "#C9A84C" }}>{p.icon}</div>
@@ -277,7 +308,7 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
             {[
               { name: "Arjun Reddy", country: "India → New York, NY", role: "Culinary Extern, Michelin-Starred Restaurant", quote: "Kranthi understood exactly what I was going through — he had lived it. The team placed me at a restaurant in Manhattan within 6 weeks. My career changed overnight.", stars: 5 },
-              { name: "Maria Santos", country: "Brazil → Orlando, FL", role: "Front Desk Supervisor, Hilton Resort", quote: "I had no idea how complex the J1 visa process was. Global J1 Careers handled everything and connected me with the right sponsor. I am now a supervisor at a Hilton property.", stars: 5 },
+              { name: "Maria Santos", country: "Brazil → Orlando, FL", role: "Front Desk Supervisor, Hilton Resort", quote: "I had no idea how complex the J-1 visa process was. Global J1 Careers handled everything and connected me with the right sponsor. I am now a supervisor at a Hilton property.", stars: 5 },
               { name: "Wei Zhang", country: "China → Las Vegas, NV", role: "F&B Management Trainee, MGM Grand", quote: "The hotel connections this team has are incredible. They matched me with a sponsor and placed me at MGM Grand for my management trainee program. Best decision I ever made.", stars: 5 },
             ].map((t, i) => (
               <div key={i} style={{ background: "#FDF8EE", border: "1px solid rgba(201,168,76,0.2)", borderRadius: 8, padding: "36px 32px" }}>
@@ -340,19 +371,26 @@ export default function Home() {
 
       {/* FOOTER */}
       <footer style={{ background: "#060E1A", borderTop: "1px solid rgba(201,168,76,0.15)", padding: "36px 5%" }}>
-        <div style={{ maxWidth: 1200, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            <ChefHat size={20} style={{ color: "#C9A84C" }} />
-            <span style={{ fontFamily: "'Playfair Display', serif", color: "#fff", fontSize: 16, fontWeight: 600 }}>Global J1 Careers</span>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 16, marginBottom: 20 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <ChefHat size={20} style={{ color: "#C9A84C" }} />
+              <span style={{ fontFamily: "'Playfair Display', serif", color: "#fff", fontSize: 16, fontWeight: 600 }}>Global J1 Careers</span>
+            </div>
+            <div style={{ color: "rgba(255,255,255,0.35)", fontSize: 13 }}>© {new Date().getFullYear()} Global J1 Careers. All rights reserved.</div>
+            <div style={{ display: "flex", gap: 24 }}>
+              {["Privacy Policy", "Terms of Service"].map(l => (
+                <a key={l} href="#" style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, textDecoration: "none" }}
+                  onMouseEnter={e => e.currentTarget.style.color = "#C9A84C"}
+                  onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.4)"}
+                >{l}</a>
+              ))}
+            </div>
           </div>
-          <div style={{ color: "rgba(255,255,255,0.35)", fontSize: 13 }}>© {new Date().getFullYear()} Global J1 Careers. All rights reserved.</div>
-          <div style={{ display: "flex", gap: 24 }}>
-            {["Privacy Policy", "Terms of Service"].map(l => (
-              <a key={l} href="#" style={{ color: "rgba(255,255,255,0.4)", fontSize: 13, textDecoration: "none" }}
-                onMouseEnter={e => e.currentTarget.style.color = "#C9A84C"}
-                onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.4)"}
-              >{l}</a>
-            ))}
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: 16 }}>
+            <p style={{ color: "rgba(255,255,255,0.3)", fontSize: 12, lineHeight: 1.7, maxWidth: 800 }}>
+              <strong style={{ color: "rgba(255,255,255,0.45)" }}>Disclaimer:</strong> Global J1 Careers is an independent consulting and recruitment support platform. We are not a U.S. Department of State designated sponsor and do not issue DS-2019 forms.
+            </p>
           </div>
         </div>
       </footer>
@@ -363,11 +401,13 @@ export default function Home() {
 function FaqList() {
   const [open, setOpen] = useState<number | null>(null);
   const faqs = [
-    { q: "What hospitality roles can I get on a J1 visa?", a: "We place students in a wide range of roles: culinary externs, pastry chefs, line cooks, front desk agents, guest services associates, food and beverage managers, event coordinators, concierge staff, and general manager trainees — at hotels, resorts, and restaurants across the U.S." },
+    { q: "What is a J-1 visa?", a: "The J-1 visa is a U.S. exchange program that allows international candidates to gain training and work experience in hospitality roles." },
+    { q: "What hospitality roles can I get on a J-1 visa?", a: "We place students in a wide range of roles: culinary externs, pastry chefs, line cooks, front desk agents, guest services associates, food and beverage managers, event coordinators, concierge staff, and general manager trainees — at hotels, resorts, and restaurants across the U.S." },
     { q: "Do I need a culinary or hotel management degree?", a: "For most placements you need to be currently enrolled in or recently graduated from a hospitality, culinary arts, or hotel management program. Some front-of-house and management trainee roles may accept related degrees. Contact us and we will assess your eligibility." },
     { q: "How does visa sponsorship work?", a: "We do not sponsor visas ourselves — we connect you with licensed U.S. sponsors who issue your DS-2019 on your behalf. We manage the relationship, paperwork guidance, and embassy prep so the process is smooth end to end." },
-    { q: "How long does the J1 process take?", a: "We typically complete sponsor matching and placement within 3–4 weeks. Embassy appointment wait times in your home country can affect the overall timeline, so we recommend starting at least 3 months before your target start date." },
-    { q: "Which hotel brands do you work with?", a: "We have active relationships with properties under Marriott, Hilton, Hyatt, IHG, and MGM, as well as independent luxury boutique hotels and fine dining restaurants across New York, Orlando, Las Vegas, Miami, and more." },
+    { q: "How long does the J-1 process take?", a: "We typically complete sponsor matching and placement within 2–4 months. Embassy appointment wait times in your home country can affect the overall timeline, so we recommend starting early." },
+    { q: "Can I extend or change my J-1 program?", a: "Extensions or changes depend on sponsor approval, program rules, and U.S. regulations." },
+    { q: "Is housing provided?", a: "Housing is not always guaranteed. Some employers or sponsors may offer guidance or assistance in finding accommodation." },
     { q: "What does the service cost?", a: "We offer a free initial consultation. Our placement fee structure is fully transparent and discussed upfront — no hidden charges. Reach out for a breakdown based on your program type and desired role." },
   ];
   return (
@@ -402,7 +442,7 @@ function ContactForm() {
     setSent(true);
   };
 
-  const inputStyle: React.CSSProperties = { width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 4, padding: "13px 16px", color: "#fff", fontSize: 14.5, outline: "none", fontFamily: "'Inter', sans-serif", boxSizing: "border-box", transition: "border-color 0.2s" };
+  const inputStyle: React.CSSProperties = { width: "100%", background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 4, padding: "13px 16px", color: "#fff", fontSize: 16, outline: "none", fontFamily: "'Inter', sans-serif", boxSizing: "border-box", transition: "border-color 0.2s" };
   const labelStyle: React.CSSProperties = { color: "rgba(255,255,255,0.6)", fontSize: 13, marginBottom: 6, display: "block" };
 
   if (sent) return (
@@ -423,11 +463,10 @@ function ContactForm() {
           <label style={labelStyle}>Role of Interest</label>
           <select style={{ ...inputStyle, appearance: "none" }} value={form.role} onChange={e => setForm({ ...form, role: e.target.value })} onFocus={e => e.currentTarget.style.borderColor = "#C9A84C"} onBlur={e => e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)"}>
             <option value="" style={{ background: "#0A1628" }}>Select a role...</option>
-            <option value="culinary" style={{ background: "#0A1628" }}>Culinary / Chef</option>
-            <option value="hotel-mgmt" style={{ background: "#0A1628" }}>Hotel Management</option>
+            <option value="culinary" style={{ background: "#0A1628" }}>Culinary / Kitchen</option>
             <option value="fb" style={{ background: "#0A1628" }}>Food & Beverage</option>
-            <option value="concierge" style={{ background: "#0A1628" }}>Concierge / Guest Services</option>
-            <option value="events" style={{ background: "#0A1628" }}>Events & Banquets</option>
+            <option value="housekeeping" style={{ background: "#0A1628" }}>Housekeeping / Rooms</option>
+            <option value="front-office" style={{ background: "#0A1628" }}>Front Office / Guest Services</option>
             <option value="other" style={{ background: "#0A1628" }}>Other</option>
           </select>
         </div>
