@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const resend = new Resend(apiKey);
     const { name, email, country, role, message } = await req.json();
     await resend.emails.send({
-      from: "Global J1 Careers <noreply@globalj1careers.com>",
+      from: "Global J1 Careers <onboarding@resend.dev>",
       to: process.env.CONTACT_EMAIL || "globalj1careers@gmail.com",
       replyTo: email,
       subject: `New J1 Consultation — ${name}`,
