@@ -13,7 +13,7 @@ const supabase = createClient(
 
 const IMAGES = {
   hero: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1400&q=80",
-  chef: "/kranthi.png",
+  chef: "/kranthi.jpg",
   kitchen: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
   lobby: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
   concierge: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=800&q=80",
