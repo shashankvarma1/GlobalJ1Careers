@@ -15,7 +15,7 @@ const IMAGES = {
   hero: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1400&q=80",
   chef: "/kranthi.jpg",
   kitchen: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
-  lobby: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
+  lobby: "https://plus.unsplash.com/premium_photo-1682089290752-2bd553508b29?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   concierge: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=800&q=80",
   dining: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80",
   housekeeping: "https://images.unsplash.com/photo-1631049552240-59c37f38802b?w=800&q=80",
@@ -366,7 +366,7 @@ export default function Home() {
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               {[
                 { icon: <Mail size={18} />, label: "Email", value: "globalj1careers@gmail.com" },
-                { icon: <Phone size={18} />, label: "Phone", value: "+1 (225) 284-5556" },
+                { icon: <Phone size={18} />, label: "Phone", value: "+1 (225) 284-5556, +91 90305 90020" },
                 { icon: <MapPin size={18} />, label: "Office", value: "Hyderabad, Telangana, India" },
               ].map(c => (
                 <div key={c.label} style={{ display: "flex", alignItems: "center", gap: 14 }}>
