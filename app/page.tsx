@@ -1,13 +1,19 @@
 "use client";
 import { useState, useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
 import {
   Menu, X, Globe, ChefHat, Briefcase, Users, CheckCircle,
   ArrowRight, Mail, Phone, MapPin, ChevronDown, Star, Shield, Clock, Award, Hotel, ConciergeBell
 } from "lucide-react";
 
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
+
 const IMAGES = {
   hero: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=1400&q=80",
-  chef: "/kranthi.jpg",
+  chef: "/kranthi.png",
   kitchen: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
   lobby: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
   concierge: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?w=800&q=80",
@@ -15,9 +21,20 @@ const IMAGES = {
   housekeeping: "https://images.unsplash.com/photo-1631049552240-59c37f38802b?w=800&q=80",
 };
 
+type Review = {
+  id: string;
+  name: string;
+  country: string;
+  role: string;
+  quote: string;
+  stars: number;
+};
+
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [showReviewModal, setShowReviewModal] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -25,6 +42,28 @@ export default function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    fetchReviews();
+  }, []);
+
+  const fetchReviews = async () => {
+    const { data } = await supabase
+      .from("reviews")
+      .select("*")
+      .eq("approved", true)
+      .order("created_at", { ascending: false });
+    if (data) setReviews(data);
+  };
+
+  const staticReviews: Review[] = [
+    { id: "1", name: "Bala Chaitanya", country: "Hyderabad → Fayetteville, NC", role: "Embassy Suites by Hilton", quote: "Global J1 Careers made the entire process seamless. From Hyderabad to North Carolina, they guided me every step of the way and connected me with the right sponsor.", stars: 5 },
+    { id: "2", name: "Sai Durga Rao", country: "Hyderabad → Las Vegas, NV", role: "Omni Hotels & Resorts", quote: "I could not have navigated the J-1 process without this team. They matched me with a sponsor and placed me at Omni Hotels in Las Vegas. Life-changing experience.", stars: 5 },
+    { id: "3", name: "Omkar", country: "Mumbai → Louisiana", role: "L'Auberge Casino Hotel", quote: "From Mumbai to Louisiana — the team handled everything professionally. The pre-departure support and sponsor matching made my transition incredibly smooth.", stars: 5 },
+    { id: "4", name: "Garfield", country: "Jamaica → Louisiana", role: "L'Auberge Casino Hotel", quote: "As an international candidate from Jamaica, I was not sure where to start. Global J1 Careers walked me through every step and got me placed at L'Auberge.", stars: 5 },
+    { id: "5", name: "Malvika", country: "West Bengal → Louisiana", role: "LA Casino Hotels", quote: "Kranthi and the team truly understand what international students go through. They were with me from application to arrival. I am so grateful for their support.", stars: 5 },
+  ];
+
+  const allReviews = [...staticReviews, ...reviews];
   const navLinks = ["About", "Services", "Process", "Testimonials", "FAQ", "Contact"];
 
   return (
@@ -79,6 +118,7 @@ export default function Home() {
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap');
         @media (max-width: 768px) { .desktop-nav { display: none !important; } .mobile-menu-btn { display: block !important; } .two-col { grid-template-columns: 1fr !important; } .hide-mobile { display: none !important; } }
         @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
+        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 20px; }
       `}</style>
 
       {/* HERO */}
@@ -106,15 +146,8 @@ export default function Home() {
               onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.35)"; e.currentTarget.style.color = "#fff"; }}
             >Explore Roles</a>
           </div>
-
-          {/* Stats */}
           <div style={{ display: "flex", gap: 40, marginTop: 64, flexWrap: "wrap" }}>
-            {[
-              ["800+", "Students Guided"],
-              ["50K+", "Social Media Community"],
-              ["10+", "Years Hospitality Experience"],
-              ["2019", "Former J-1 Participant"],
-            ].map(([num, label]) => (
+            {[["800+", "Students Guided"], ["50K+", "Social Media Community"], ["10+", "Years Hospitality Experience"], ["2019", "Former J-1 Participant"]].map(([num, label]) => (
               <div key={label} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
                 <CheckCircle size={18} style={{ color: "#C9A84C", marginTop: 4, flexShrink: 0 }} />
                 <div>
@@ -137,7 +170,7 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center", marginBottom: 80 }} className="two-col">
             <div style={{ position: "relative" }}>
               <div style={{ borderRadius: 8, overflow: "hidden", aspectRatio: "4/5" }}>
-                <img src={IMAGES.chef} alt="Chef in professional kitchen" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src={IMAGES.chef} alt="Kranthi - Founder" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
               <div style={{ position: "absolute", bottom: -20, right: -20, background: "#0A1628", border: "3px solid #fff", borderRadius: 8, padding: "16px 20px", boxShadow: "0 8px 32px rgba(0,0,0,0.15)" }} className="hide-mobile">
                 <div style={{ fontFamily: "'Playfair Display', serif", fontSize: 28, fontWeight: 700, color: "#C9A84C" }}>10+</div>
@@ -167,7 +200,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: 20 }}>
             {[
               { icon: <Shield size={26} />, title: "Sponsor Connections", sub: "We match you with licensed U.S. DS-2019 sponsors", dark: true },
@@ -226,30 +258,10 @@ export default function Home() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
             {[
-              {
-                icon: <ChefHat size={32} />,
-                title: "Hospitality Job Matching",
-                desc: "We align your culinary training, hotel management degree, or food & beverage experience with the right J-1 opportunities at leading hotels, resorts, and restaurant groups across the United States.",
-                features: ["Resume & portfolio optimization", "Personalized role matching", "Interview preparation & coaching", "Offer guidance & negotiation support"]
-              },
-              {
-                icon: <Briefcase size={32} />,
-                title: "Visa Sponsorship Guidance",
-                desc: "We connect you with licensed U.S. sponsors who issue your DS-2019 on your behalf. We manage the relationship and paperwork guidance so the process is smooth end to end.",
-                features: ["Sponsor matching and selection support", "DS-2019 process guidance and walkthrough", "Embassy interview preparation", "Ongoing program compliance support"]
-              },
-              {
-                icon: <Hotel size={32} />,
-                title: "Partner Hotel Network",
-                desc: "We work with a wide range of hospitality employers and help connect candidates to J-1 opportunities.",
-                features: ["Hotel, resort & restaurant placements through sponsor networks", "Opportunities across luxury, city, and resort locations", "Access to fine dining and hospitality training programs", "Expanding network of employers across the U.S."]
-              },
-              {
-                icon: <Users size={32} />,
-                title: "Pre-Departure & Arrival",
-                desc: "Moving to the U.S. is a big step. We prepare you for everything from housing and banking to understanding American tipping culture.",
-                features: ["Housing search assistance", "SSN & banking setup", "Workplace culture briefing", "Airport & arrival guide"]
-              },
+              { icon: <ChefHat size={32} />, title: "Hospitality Job Matching", desc: "We align your culinary training, hotel management degree, or food & beverage experience with the right J-1 opportunities at leading hotels, resorts, and restaurant groups across the United States.", features: ["Resume & portfolio optimization", "Personalized role matching", "Interview preparation & coaching", "Offer guidance & negotiation support"] },
+              { icon: <Briefcase size={32} />, title: "Visa Sponsorship Guidance", desc: "We connect you with licensed U.S. sponsors who issue your DS-2019 on your behalf. We manage the relationship and paperwork guidance so the process is smooth end to end.", features: ["Sponsor matching and selection support", "DS-2019 process guidance and walkthrough", "Embassy interview preparation", "Ongoing program compliance support"] },
+              { icon: <Hotel size={32} />, title: "Partner Hotel Network", desc: "We work with a wide range of hospitality employers and help connect candidates to J-1 opportunities.", features: ["Hotel, resort & restaurant placements through sponsor networks", "Opportunities across luxury, city, and resort locations", "Access to fine dining and hospitality training programs", "Expanding network of employers across the U.S."] },
+              { icon: <Users size={32} />, title: "Pre-Departure & Arrival", desc: "Moving to the U.S. is a big step. We prepare you for everything from housing and banking to understanding American tipping culture.", features: ["Housing search assistance", "SSN & banking setup", "Workplace culture briefing", "Airport & arrival guide"] },
             ].map((s, i) => (
               <div key={i} style={{ background: "#fff", borderRadius: 8, padding: "36px 32px", border: "1px solid rgba(10,22,40,0.08)", boxShadow: "0 2px 16px rgba(10,22,40,0.05)", transition: "transform 0.2s, box-shadow 0.2s" }}
                 onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 8px 32px rgba(10,22,40,0.12)"; }}
@@ -300,18 +312,20 @@ export default function Home() {
       {/* TESTIMONIALS */}
       <section id="testimonials" style={{ background: "#fff", padding: "100px 5%" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: 64 }}>
+          <div style={{ textAlign: "center", marginBottom: 48 }}>
             <span style={{ color: "#C9A84C", fontSize: 13, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>Success Stories</span>
             <span style={{ display: "block", width: 60, height: 3, background: "#C9A84C", margin: "12px auto 24px" }} />
-            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 3.5vw, 2.8rem)", fontWeight: 700, color: "#0A1628" }}>Students Who Made It</h2>
+            <h2 style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(2rem, 3.5vw, 2.8rem)", fontWeight: 700, color: "#0A1628", marginBottom: 16 }}>Students Who Made It</h2>
+            <button onClick={() => setShowReviewModal(true)} style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#0A1628", color: "#C9A84C", border: "1.5px solid #C9A84C", padding: "11px 24px", borderRadius: 4, fontWeight: 600, fontSize: 14, cursor: "pointer", transition: "all 0.2s" }}
+              onMouseEnter={e => { e.currentTarget.style.background = "#C9A84C"; e.currentTarget.style.color = "#0A1628"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = "#0A1628"; e.currentTarget.style.color = "#C9A84C"; }}
+            >
+              <Star size={15} /> Leave a Review
+            </button>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
-            {[
-              { name: "Arjun Reddy", country: "India → New York, NY", role: "Culinary Extern, Michelin-Starred Restaurant", quote: "Kranthi understood exactly what I was going through — he had lived it. The team placed me at a restaurant in Manhattan within 6 weeks. My career changed overnight.", stars: 5 },
-              { name: "Maria Santos", country: "Brazil → Orlando, FL", role: "Front Desk Supervisor, Hilton Resort", quote: "I had no idea how complex the J-1 visa process was. Global J1 Careers handled everything and connected me with the right sponsor. I am now a supervisor at a Hilton property.", stars: 5 },
-              { name: "Wei Zhang", country: "China → Las Vegas, NV", role: "F&B Management Trainee, MGM Grand", quote: "The hotel connections this team has are incredible. They matched me with a sponsor and placed me at MGM Grand for my management trainee program. Best decision I ever made.", stars: 5 },
-            ].map((t, i) => (
-              <div key={i} style={{ background: "#FDF8EE", border: "1px solid rgba(201,168,76,0.2)", borderRadius: 8, padding: "36px 32px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24 }}>
+            {allReviews.map((t) => (
+              <div key={t.id} style={{ background: "#FDF8EE", border: "1px solid rgba(201,168,76,0.2)", borderRadius: 8, padding: "36px 32px" }}>
                 <div style={{ display: "flex", gap: 3, marginBottom: 20 }}>
                   {Array.from({ length: t.stars }).map((_, s) => <Star key={s} size={16} style={{ color: "#C9A84C", fill: "#C9A84C" }} />)}
                 </div>
@@ -394,6 +408,69 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* REVIEW MODAL */}
+      {showReviewModal && (
+        <div className="modal-overlay" onClick={e => { if (e.target === e.currentTarget) setShowReviewModal(false); }}>
+          <ReviewModal onClose={() => setShowReviewModal(false)} onSubmitted={fetchReviews} />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ReviewModal({ onClose, onSubmitted }: { onClose: () => void; onSubmitted: () => void }) {
+  const [form, setForm] = useState({ name: "", country: "", role: "", quote: "", stars: 5 });
+  const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async () => {
+    if (!form.name || !form.quote) return;
+    setLoading(true);
+    await supabase.from("reviews").insert([{ ...form, approved: false }]);
+    setLoading(false);
+    setSent(true);
+    onSubmitted();
+  };
+
+  const inputStyle: React.CSSProperties = { width: "100%", background: "#F8F6F1", border: "1px solid rgba(10,22,40,0.15)", borderRadius: 4, padding: "12px 16px", color: "#0A1628", fontSize: 15, outline: "none", fontFamily: "'Inter', sans-serif", boxSizing: "border-box" };
+  const labelStyle: React.CSSProperties = { color: "#4A5568", fontSize: 13, marginBottom: 6, display: "block", fontWeight: 500 };
+
+  return (
+    <div style={{ background: "#fff", borderRadius: 10, padding: "40px 36px", width: "100%", maxWidth: 500, position: "relative", maxHeight: "90vh", overflowY: "auto" }}>
+      <button onClick={onClose} style={{ position: "absolute", top: 16, right: 16, background: "none", border: "none", cursor: "pointer", color: "#718096" }}><X size={20} /></button>
+      {sent ? (
+        <div style={{ textAlign: "center", padding: "20px 0" }}>
+          <CheckCircle size={48} style={{ color: "#C9A84C", margin: "0 auto 16px" }} />
+          <h3 style={{ fontFamily: "'Playfair Display', serif", color: "#0A1628", fontSize: 22, marginBottom: 10 }}>Thank You!</h3>
+          <p style={{ color: "#4A5568", lineHeight: 1.75 }}>Your review has been submitted and will appear after approval.</p>
+          <button onClick={onClose} style={{ marginTop: 24, background: "#C9A84C", color: "#0A1628", padding: "12px 28px", borderRadius: 4, border: "none", fontWeight: 700, cursor: "pointer" }}>Close</button>
+        </div>
+      ) : (
+        <>
+          <h3 style={{ fontFamily: "'Playfair Display', serif", color: "#0A1628", fontSize: 22, fontWeight: 700, marginBottom: 6 }}>Leave a Review</h3>
+          <p style={{ color: "#718096", fontSize: 14, marginBottom: 28 }}>Share your experience with Global J1 Careers.</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+            <div>
+              <label style={labelStyle}>Your Rating</label>
+              <div style={{ display: "flex", gap: 6 }}>
+                {[1, 2, 3, 4, 5].map(s => (
+                  <button key={s} onClick={() => setForm({ ...form, stars: s })} style={{ background: "none", border: "none", cursor: "pointer", padding: 2 }}>
+                    <Star size={24} style={{ color: "#C9A84C", fill: s <= form.stars ? "#C9A84C" : "none" }} />
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div><label style={labelStyle}>Full Name *</label><input style={inputStyle} placeholder="Your name" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} /></div>
+            <div><label style={labelStyle}>Role & Hotel</label><input style={inputStyle} placeholder="e.g. Line Cook, Marriott Orlando" value={form.role} onChange={e => setForm({ ...form, role: e.target.value })} /></div>
+            <div><label style={labelStyle}>Country → U.S. Location</label><input style={inputStyle} placeholder="e.g. India → New York, NY" value={form.country} onChange={e => setForm({ ...form, country: e.target.value })} /></div>
+            <div><label style={labelStyle}>Your Review *</label><textarea style={{ ...inputStyle, height: 100, resize: "vertical" }} placeholder="Share your experience..." value={form.quote} onChange={e => setForm({ ...form, quote: e.target.value })} /></div>
+            <button onClick={handleSubmit} disabled={loading} style={{ background: "#C9A84C", color: "#0A1628", padding: "13px 0", borderRadius: 4, border: "none", fontWeight: 700, fontSize: 15, cursor: "pointer", opacity: loading ? 0.8 : 1 }}>
+              {loading ? "Submitting..." : "Submit Review"}
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 }
